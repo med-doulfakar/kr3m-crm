@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsComponent } from './components/forms/forms.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent
+    ContactsComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,

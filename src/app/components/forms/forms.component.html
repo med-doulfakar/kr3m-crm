@@ -1,0 +1,206 @@
+<div class="container-fluid">
+  <h3>Add new contact</h3>
+  <div class="alert alert-success" *ngIf="formSubmitted">
+    🎉🎉 Thank you for submitting the new client
+  </div>
+
+  <div class="progress">
+    <div
+      class="progress-bar"
+      role="progressbar"
+      [style.width]="formProgress + '%'"
+      aria-valuenow="75"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    ></div>
+  </div>
+
+  <div class="form-wrapper bg-light">
+    <form class="row g-3" [formGroup]="addForm" (ngSubmit)="submit()">
+      <div class="col-md-6">
+        <label for="firstname" class="form-label">First Name</label>
+        <input
+          type="text"
+          class="form-control shadow-none"
+          formControlName="FirstName"
+          id="firstname"
+          [ngClass]="{
+            'is-invalid':
+              addForm.controls['FirstName'].touched &&
+              addForm.controls['FirstName'].errors,
+            'is-valid': addForm.controls['FirstName'].valid
+          }"
+        />
+        <div
+          class="invalid-feedback d-block"
+          *ngIf="
+            addForm.controls['FirstName'].invalid &&
+            (addForm.controls['FirstName'].dirty ||
+              addForm.controls['FirstName'].touched)
+          "
+        >
+          First Name is required.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="lastname" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control shadow-none"
+          formControlName="LastName"
+          id="lastname"
+          [ngClass]="{
+            'is-invalid':
+              addForm.controls['LastName'].touched &&
+              addForm.controls['LastName'].errors,
+            'is-valid': addForm.controls['LastName'].valid
+          }"
+        />
+        <div
+          class="invalid-feedback d-block"
+          *ngIf="
+            addForm.controls['LastName'].invalid &&
+            (addForm.controls['LastName'].dirty ||
+              addForm.controls['LastName'].touched)
+          "
+        >
+          Last Name is required.
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control shadow-none"
+          id="email"
+          formControlName="Email"
+          [ngClass]="{
+            'is-invalid':
+              addForm.controls['Email'].touched &&
+              addForm.controls['Email'].errors,
+            'is-valid': addForm.controls['Email'].valid
+          }"
+        />
+        <div
+          class="invalid-feedback d-block"
+          *ngIf="
+            addForm.controls['Email'].invalid &&
+            (addForm.controls['Email'].dirty ||
+              addForm.controls['Email'].touched)
+          "
+        >
+          <span *ngIf="addForm.controls['Email']?.errors?.['required']"
+            >Email is required.</span
+          >
+          <span *ngIf="addForm.controls['Email']?.errors?.['email']"
+            >Email is incorrect.</span
+          >
+        </div>
+      </div>
+      <div class="col-md-8">
+        <label for="maritalStatus" class="form-label">Marital Status</label>
+        <select
+          class="form-select shadow-none"
+          id="maritalStatus"
+          formControlName="MaritalStatus"
+          [ngClass]="{
+            'is-invalid':
+              addForm.controls['MaritalStatus'].touched &&
+              addForm.controls['MaritalStatus'].errors,
+            'is-valid': addForm.controls['MaritalStatus'].valid
+          }"
+        >
+          <option *ngFor="let status of maritalStatuses" [value]="status">
+            {{ status }}
+          </option>
+        </select>
+        <div
+          class="invalid-feedback d-block"
+          *ngIf="
+            addForm.controls['MaritalStatus'].invalid &&
+            (addForm.controls['MaritalStatus'].dirty ||
+              addForm.controls['MaritalStatus'].touched)
+          "
+        >
+          <span *ngIf="addForm.controls['MaritalStatus']?.errors?.['required']"
+            >Marital Status is required.</span
+          >
+        </div>
+      </div>
+      <div class="col-4">
+        <label for="numberOfChildren" class="form-label"
+          >Number of children</label
+        >
+        <input
+          type="number"
+          class="form-control shadow-none"
+          id="numberOfChildren"
+          formControlName="NumberOfChildren"
+          [ngClass]="{
+            'is-invalid':
+              addForm.controls['NumberOfChildren'].touched &&
+              addForm.controls['NumberOfChildren'].errors,
+            'is-valid': addForm.controls['NumberOfChildren'].valid
+          }"
+        />
+        <div
+          class="invalid-feedback d-block"
+          *ngIf="
+            addForm.controls['NumberOfChildren'].invalid &&
+            (addForm.controls['NumberOfChildren'].dirty ||
+              addForm.controls['NumberOfChildren'].touched)
+          "
+        >
+          <span
+            *ngIf="addForm.controls['NumberOfChildren']?.errors?.['required']"
+            >Number of children is required.</span
+          >
+          <span *ngIf="addForm.controls['NumberOfChildren']?.errors?.['min']"
+            >Number of children should be greater than or equal 0.</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label for="monthlyIncome" class="form-label">Monthly Income</label>
+        <select
+          class="form-select shadow-none"
+          id="monthlyIncome"
+          formControlName="MonthlyIncome"
+          [ngClass]="{
+            'is-invalid':
+              addForm.controls['MonthlyIncome'].touched &&
+              addForm.controls['MonthlyIncome'].errors,
+            'is-valid': addForm.controls['MonthlyIncome'].valid
+          }"
+        >
+          <option *ngFor="let income of monthlyIncomes" [value]="income">
+            {{ income }}
+          </option>
+        </select>
+
+        <div
+          class="invalid-feedback d-block"
+          *ngIf="
+            addForm.controls['MonthlyIncome'].invalid &&
+            (addForm.controls['MonthlyIncome'].dirty ||
+              addForm.controls['MonthlyIncome'].touched)
+          "
+        >
+          <span *ngIf="addForm.controls['MonthlyIncome']?.errors?.['required']"
+            >Number of children is required.</span
+          >
+        </div>
+      </div>
+      <div class="col-12">
+        <button
+          type="submit"
+          class="btn btn-success shadow-none"
+          [disabled]="!addForm.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

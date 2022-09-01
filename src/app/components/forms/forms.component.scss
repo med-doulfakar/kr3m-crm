@@ -1,0 +1,12 @@
+.form-wrapper {
+  padding: 1rem;
+}
+
+.form-control:focus{
+  transform: scale(1.02);
+  font-size: 1.3rem;
+}
+
+.progress{
+  border-radius: 0!important;
+}
