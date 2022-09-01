@@ -10,8 +10,8 @@
 .nav-link{
   color: whitesmoke!important;
 }
-.active{
-  color: #a7ffa7;
+.active-link{
+  border-bottom: yellow 2px solid;
 }
 
 .wrapper{
@@ -21,4 +21,7 @@
 
 .content-wrapper{
   margin: 1.2rem
+}
+.navbar-toggler{
+  color: white!important
 }
