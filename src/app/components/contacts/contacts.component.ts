@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {faDownload} from '@fortawesome/free-solid-svg-icons'
 import { Client } from './models/client.model';
 import { ContactService } from './services/contact.service';
+import { ExcelService } from './services/excel.service';
 
 @Component({
   selector: 'app-contacts',
@@ -13,8 +15,9 @@ export class ContactsComponent implements OnInit {
   pageSize = 15;
   pages: number[] = [];
   allClients: Client[] = [];
+  downloadIcon = faDownload
 
-  constructor(private contactsService: ContactService) {}
+  constructor(private contactsService: ContactService , private excelService : ExcelService) {}
 
   ngOnInit(): void {
     this.getData(this.pageNo);
@@ -50,5 +53,9 @@ export class ContactsComponent implements OnInit {
 
   updatePages(total: number) {
     this.pages = Array(Math.ceil(total / this.pageSize));
+  }
+
+  exportData() : void {
+    this.excelService.exportAsExcelFile(this.clients, "kr3m-client")
   }
 }

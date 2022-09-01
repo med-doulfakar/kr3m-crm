@@ -1,9 +1,16 @@
 <div class="container-fluid">
   <h3>Contacts List</h3>
-  <div class="mb-3 float-end w-25">
-    <input class="form-control shadow-none" type="text" placeholder="Search for contacts ..." (input)="filterData($event)">
+  <div class="mb-3 float-end w-25 d-inline-flex p-2">
+    <input
+      class="form-control shadow-none me-30"
+      type="text"
+      placeholder="Search for contacts ..."
+      (input)="filterData($event)"
+    />
+    <button class="btn btn-warning shadow-none" (click)="exportData()">
+      <fa-icon [icon]="downloadIcon"></fa-icon>
+    </button>
   </div>
-
 
   <table class="table table-hover">
     <thead>
@@ -14,11 +21,19 @@
         <th scope="col">Username</th>
         <th scope="col">Company</th>
         <th scope="col">Domain</th>
+        <th scope="col">Email</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let client of clients">
-        <th scope="row">{{ client?.id }}</th>
+        <th>
+          <img
+            [src]="client?.image"
+            class="img-thumbnail rounded-circle"
+            alt="..."
+            style="width: 50px"
+          />
+        </th>
         <td>{{ client?.firstName }}</td>
         <td>{{ client?.lastName }}</td>
         <td>{{ client?.username }}</td>
@@ -26,21 +41,27 @@
           <span class="badge bg-secondary">{{ client?.company?.name }}</span>
         </td>
         <td>{{ client?.domain }}</td>
+        <td>{{ client?.email }}</td>
       </tr>
     </tbody>
   </table>
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item">
-        <a class="page-link"  aria-label="Previous">
+        <a class="page-link" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li class="page-item" *ngFor="let p of pages; let i = index" (click)="getData(i)">
-        <a class="page-link" >{{ i + 1 }}</a>
+      <li
+        class="page-item"
+        [ngClass]="{'active': i === pageNo}"
+        *ngFor="let p of pages; let i = index"
+        (click)="getData(i)"
+      >
+        <a class="page-link">{{ i + 1 }}</a>
       </li>
       <li class="page-item">
-        <a class="page-link"  aria-label="Next">
+        <a class="page-link" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
