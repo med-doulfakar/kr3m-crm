@@ -9,12 +9,14 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsComponent } from './components/forms/forms.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsComponent,
-    FormsComponent
+    FormsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
